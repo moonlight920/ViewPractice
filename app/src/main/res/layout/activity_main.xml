@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <com.yf.viewpractice.view.AvatarView
+    <com.yf.viewpractice.view07.CustomView
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
