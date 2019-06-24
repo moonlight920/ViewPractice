@@ -1,10 +1,14 @@
 package com.yf.viewpractice.view07
 
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.yf.viewpractice.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class CircleView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     View(context, attrs, defStyleAttr) {
@@ -82,5 +86,43 @@ class CircleView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         options.inTargetDensity = width
         return BitmapFactory.decodeResource(resources, R.drawable.avatar, options)
 
+    }
+
+    fun startAnim() {
+        val bottomFlipAnimator = ObjectAnimator.ofFloat(this, "bottomFlip", 45f)
+        bottomFlipAnimator.duration = 1200
+
+        val flipRotationAnimator = ObjectAnimator.ofFloat(this, "flipRotation", 270f)
+        flipRotationAnimator.duration = 1200
+
+        val topFlipAnimator = ObjectAnimator.ofFloat(this, "topFlip", -45f)
+        topFlipAnimator.duration = 1200
+
+        var animatorSet = AnimatorSet()
+        animatorSet.playSequentially(bottomFlipAnimator, flipRotationAnimator, topFlipAnimator)
+        animatorSet.start()
+
+        animatorSet.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(animation: Animator?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                val bottomFlipRestoreAnimator = ObjectAnimator.ofFloat(this@CircleView, "bottomFlip", 0f)
+                val topFlipRestoreAnimator = ObjectAnimator.ofFloat(this@CircleView, "topFlip", 0f)
+
+                var restoreAnimatorSet = AnimatorSet()
+                restoreAnimatorSet.playTogether(bottomFlipRestoreAnimator, topFlipRestoreAnimator)
+                restoreAnimatorSet.duration = 1200
+                restoreAnimatorSet.start()
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+        })
     }
 }
