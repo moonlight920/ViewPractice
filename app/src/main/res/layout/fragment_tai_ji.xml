@@ -5,6 +5,8 @@
              android:layout_height="match_parent"
              tools:context=".TaiJiFragment">
 
-    <com.yf.viewpractice.view.TaiJiView android:layout_width="match_parent" android:layout_height="match_parent"/>
+    <com.yf.viewpractice.view.TaiJiView
+            android:id="@+id/taijiView"
+            android:layout_width="match_parent" android:layout_height="match_parent"/>
 
 </FrameLayout>
