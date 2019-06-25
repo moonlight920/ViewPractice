@@ -36,11 +36,11 @@ class TaiJiView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         canvas.drawArc(-RADIUS_OUTER, -RADIUS_OUTER, RADIUS_OUTER, RADIUS_OUTER, 90f, 180f, true, whitePaint)
         canvas.drawArc(-RADIUS_OUTER, -RADIUS_OUTER, RADIUS_OUTER, RADIUS_OUTER, 270f, 180f, true, blackPaint)
 
-        canvas.drawCircle(0f, -RADIUS_OUTER / 2,RADIUS_OUTER/2,whitePaint)
-        canvas.drawCircle(0f, RADIUS_OUTER / 2,RADIUS_OUTER/2,blackPaint)
+        canvas.drawCircle(0f, -RADIUS_OUTER / 2, RADIUS_OUTER / 2, whitePaint)
+        canvas.drawCircle(0f, RADIUS_OUTER / 2, RADIUS_OUTER / 2, blackPaint)
 
-        canvas.drawCircle(0f, -RADIUS_OUTER / 2,RADIUS_OUTER/6,blackPaint)
-        canvas.drawCircle(0f, RADIUS_OUTER / 2,RADIUS_OUTER/6,whitePaint)
+        canvas.drawCircle(0f, -RADIUS_OUTER / 2, RADIUS_OUTER / 8, blackPaint)
+        canvas.drawCircle(0f, RADIUS_OUTER / 2, RADIUS_OUTER / 8, whitePaint)
 //        canvas.translate(-width / 2f, -height / 2f)
         canvas.restore()
     }

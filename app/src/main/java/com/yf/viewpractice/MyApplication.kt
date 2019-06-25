@@ -2,6 +2,7 @@ package com.yf.viewpractice
 
 import android.app.Application
 import com.yf.smarttemplate.SmartTemplate
+import com.yf.viewpractice.expressage.ExpressageFragment
 import com.yf.viewpractice.measure.MeasureFragment
 import com.yf.viewpractice.taglayout.TagLayoutFragment
 
@@ -25,6 +26,9 @@ class MyApplication : Application() {
             }
             fragmentItem(TaiJiFragment::class.java) {
                 title = "太极"
+            }
+            fragmentItem(ExpressageFragment::class.java) {
+                title = "快递流程图"
             }
         }
     }

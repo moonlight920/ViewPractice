@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import com.yf.viewpractice.R
 import com.yf.viewpractice.debugLog
+import com.yf.viewpractice.utils.BitmapUtil
 
 class AvatarView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     View(context, attrs, defStyleAttr) {
@@ -19,7 +20,7 @@ class AvatarView @JvmOverloads constructor(context: Context, attrs: AttributeSet
     val xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
     val saveArea = RectF()
 
-    var mBitmap: Bitmap = getBitmap(WIDTH.toInt())
+    var mBitmap: Bitmap = BitmapUtil.getBitmap(resources, R.drawable.avatar, WIDTH.toInt())
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -43,16 +44,5 @@ class AvatarView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         canvas.drawBitmap(mBitmap, PADDING, PADDING, paint)
         paint.xfermode = null
         canvas.restoreToCount(saved)
-    }
-
-    fun getBitmap(width: Int): Bitmap {
-        val options = BitmapFactory.Options()
-        options.inJustDecodeBounds = true
-        BitmapFactory.decodeResource(resources, R.drawable.avatar, options)
-        options.inJustDecodeBounds = false
-        options.inDensity = options.outWidth
-        options.inTargetDensity = width
-        return BitmapFactory.decodeResource(resources, R.drawable.avatar, options)
-
     }
 }
