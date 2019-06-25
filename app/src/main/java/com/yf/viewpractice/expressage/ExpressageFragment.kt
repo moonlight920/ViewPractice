@@ -1,24 +1,19 @@
 package com.yf.viewpractice.expressage
 
 
-import android.content.res.Resources
-import android.graphics.*
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yf.viewpractice.R
-import com.yf.viewpractice.debugLog
-import com.yf.viewpractice.utils.BitmapUtil
 import kotlinx.android.synthetic.main.fragment_expressage.*
 
 
 class ExpressageFragment : Fragment() {
-
 
 
     override fun onCreateView(
@@ -38,7 +33,7 @@ class ExpressageFragment : Fragment() {
 
     class MyAdapter(var list: List<ExpressInfo>) : RecyclerView.Adapter<MyViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(android.R.layout.simple_list_item_1, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_express, parent, false)
             return MyViewHolder(view)
         }
 
@@ -47,13 +42,24 @@ class ExpressageFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            holder.textView.text = list[position].detail
+            holder.tvSummary.text = list[position].summary
+            list[position].detail.let {
+                if (it.isNotBlank()) {
+                    holder.tvDesc.visibility = View.VISIBLE
+                    holder.tvDesc.text = it
+                } else {
+                    holder.tvDesc.visibility = View.GONE
+                }
+            }
+
+
         }
 
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textView = itemView.findViewById<TextView>(android.R.id.text1)
+        val tvSummary = itemView.findViewById<TextView>(R.id.tvSummary)
+        val tvDesc = itemView.findViewById<TextView>(R.id.tvDesc)
     }
 
 }

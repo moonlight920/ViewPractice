@@ -1,3 +1,21 @@
 package com.yf.viewpractice.expressage
 
-data class ExpressInfo(val data:String,val time:String,var detail:String)
+data class ExpressInfo(
+    val date: String,
+    val time: String,
+    val status: DeliverStatus,
+    var summary: String = "",
+    var detail: String = ""
+)
+
+/**
+ * 派发状态
+ */
+enum class DeliverStatus {
+    HEADER,
+    COLLECTING,
+    DEFAULT,
+    TRANSPORTING,
+    DELIVERING,
+    RECEIVED
+}
