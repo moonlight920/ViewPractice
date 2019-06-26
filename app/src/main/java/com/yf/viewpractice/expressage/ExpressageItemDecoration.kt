@@ -1,16 +1,15 @@
 package com.yf.viewpractice.expressage
 
 import android.content.res.Resources
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.yf.viewpractice.R
 import com.yf.viewpractice.debugLog
 import com.yf.viewpractice.utils.BitmapUtil
 import com.yf.viewpractice.utils.Utils
+
+
 
 class ExpressageItemDecoration : RecyclerView.ItemDecoration() {
 
@@ -34,6 +33,13 @@ class ExpressageItemDecoration : RecyclerView.ItemDecoration() {
         color = GRAY
         style = Paint.Style.STROKE
         strokeWidth = 3f
+    }
+
+    private val dashLinePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = GRAY
+        style = Paint.Style.STROKE
+        strokeWidth = 3f
+        pathEffect = DashPathEffect(floatArrayOf(4f, 4f), 0f)
     }
 
     private val bitmapPaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -81,14 +87,12 @@ class ExpressageItemDecoration : RecyclerView.ItemDecoration() {
             val circleY = (middleLineTopY + middleLineBottomY) / 2
 
             if (expressInfo.status == DeliverStatus.HEADER) {
-                // 画流水线
-                c.drawLine(
-                    middleLineTopX,
-                    (middleLineTopY + middleLineBottomY) / 2,
-                    middleLineBottomX,
-                    middleLineBottomY,
-                    paint
-                )
+                // 画虚线
+                val path = Path()
+                path.moveTo(middleLineTopX, (middleLineTopY + middleLineBottomY) / 2)
+                path.lineTo(middleLineBottomX, middleLineBottomY)
+                c.drawPath(path,dashLinePaint)
+
                 c.drawOuterColorCircle(circleX, circleY)
                 c.drawCenterText("收", circleX, circleY)
             } else {
