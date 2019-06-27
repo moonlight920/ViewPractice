@@ -1,4 +1,4 @@
-package com.yf.viewpractice.nestedscroll
+package com.yf.douyincopy
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,6 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.yf.viewpractice.R
-import com.yf.viewpractice.debugLog
-
 
 class MyAdapter(var list: List<ItemBean>) : RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

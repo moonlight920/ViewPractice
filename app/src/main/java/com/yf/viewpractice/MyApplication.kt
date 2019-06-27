@@ -5,7 +5,6 @@ import com.yf.smarttemplate.SmartTemplate
 import com.yf.viewpractice.cup.CupFragment
 import com.yf.viewpractice.expressage.ExpressageFragment
 import com.yf.viewpractice.measure.MeasureFragment
-import com.yf.viewpractice.nestedscroll.FullscreenVideoActivity
 import com.yf.viewpractice.taglayout.TagLayoutFragment
 
 class MyApplication : Application() {
@@ -34,9 +33,6 @@ class MyApplication : Application() {
             }
             fragmentItem(CupFragment::class.java) {
                 title = "杯子冒泡"
-            }
-            activityItem(FullscreenVideoActivity::class.java) {
-                title = "嵌套滚动"
             }
         }
     }

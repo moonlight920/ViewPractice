@@ -1,6 +1,6 @@
-package com.yf.viewpractice.nestedscroll
+package com.yf.douyincopy
 
-import com.yf.viewpractice.R
+import com.yf.douyincopy.R
 
 object ItemBeanHolder {
 

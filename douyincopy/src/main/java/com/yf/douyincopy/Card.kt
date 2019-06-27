@@ -1,4 +1,4 @@
-package com.yf.viewpractice.nestedscroll
+package com.yf.douyincopy
 
 import android.os.Parcel
 import android.os.Parcelable

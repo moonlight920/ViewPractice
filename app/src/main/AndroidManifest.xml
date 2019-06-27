@@ -15,12 +15,6 @@
             android:supportsRtl="true"
             android:theme="@style/SampleAppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity
-                android:name=".nestedscroll.FullscreenVideoActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize"
-                android:screenOrientation="userPortrait"
-                android:theme="@style/FullscreenTheme">
-        </activity>
         <activity android:name=".AnimationActivity">
         </activity>
         <activity android:name=".MainActivity">
