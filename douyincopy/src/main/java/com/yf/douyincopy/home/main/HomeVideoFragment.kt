@@ -1,15 +1,15 @@
-package com.yf.douyincopy.home
+package com.yf.douyincopy.home.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.yf.douyincopy.Card
+import com.yf.douyincopy.bean.Card
 import com.yf.douyincopy.R
 import kotlinx.android.synthetic.main.fragment_nested_card.*
 
-class CardFragment : Fragment() {
+class HomeVideoFragment : Fragment() {
 
     var cardID = 0
 
@@ -32,8 +32,8 @@ class CardFragment : Fragment() {
 
     companion object {
 
-        fun create(card: Card): CardFragment {
-            val fragment = CardFragment()
+        fun create(card: Card): HomeVideoFragment {
+            val fragment = HomeVideoFragment()
             val bundle = Bundle().apply {
                 putInt("id", card.id)
             }

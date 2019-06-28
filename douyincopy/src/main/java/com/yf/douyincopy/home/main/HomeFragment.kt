@@ -1,4 +1,4 @@
-package com.yf.douyincopy.home
+package com.yf.douyincopy.home.main
 
 
 import android.os.Bundle
@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.yf.douyincopy.bean.Cards
 import com.yf.douyincopy.R
-import com.yf.douyincopy.Cards
 import kotlinx.android.synthetic.main.fragment_nested_home.*
 
 
 /**
- * 主要fragment，又分4个标签页
+ * [com.yf.douyincopy.home.MainFragment] 的第一个标签home
  */
 class HomeFragment : Fragment() {
 
@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun createFragment(position: Int): Fragment {
-                return CardFragment.create(Cards.DATA[position])
+                return HomeVideoFragment.create(Cards.DATA[position])
             }
         }
 

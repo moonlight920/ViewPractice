@@ -1,4 +1,4 @@
-package com.yf.douyincopy.home
+package com.yf.douyincopy
 
 
 import android.os.Bundle
@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import com.yf.douyincopy.R
-import com.yf.douyincopy.UserInfoFragment
+import com.yf.douyincopy.home.CameraFragment
+import com.yf.douyincopy.home.MainFragment
+import com.yf.douyincopy.home.UserInfoFragment
 import kotlinx.android.synthetic.main.fragment_douyin_copy.*
 
 

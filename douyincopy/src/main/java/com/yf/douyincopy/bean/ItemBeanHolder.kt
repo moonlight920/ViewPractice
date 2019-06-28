@@ -1,4 +1,4 @@
-package com.yf.douyincopy
+package com.yf.douyincopy.bean
 
 import com.yf.douyincopy.R
 

@@ -1,4 +1,4 @@
-package com.yf.douyincopy
+package com.yf.douyincopy.bean
 
 object Cards {
 

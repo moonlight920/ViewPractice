@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.yf.douyincopy.R
+import com.yf.douyincopy.home.main.HomeFragment
 
 
 /**
