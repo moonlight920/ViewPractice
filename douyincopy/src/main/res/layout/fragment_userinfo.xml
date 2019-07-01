@@ -7,36 +7,37 @@
         android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="400dp">
+            android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 xmlns:collapsing="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/collapsingToolbarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                collapsing:contentScrim="?attr/colorPrimary"
                 collapsing:collapsedTitleGravity="center_horizontal"
+                collapsing:statusBarScrim="@android:color/transparent"
+                collapsing:contentScrim="@android:color/transparent"
                 coordinator:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <RelativeLayout
-                    android:background="#60ff0000"
-                    collapsing:layout_collapseMode="parallax"
+            <include
                     android:layout_width="match_parent"
-                    android:layout_height="400dp">
-                <ImageView android:layout_width="match_parent"
-                           android:src="@mipmap/ic_launcher"
-                           android:scaleType="centerCrop"
-                           android:layout_height="match_parent"/>
-            </RelativeLayout>
+                    android:layout_height="400dp"
+                    layout="@layout/layout_header_userinfo"/>
 
+            <!--占位用-->
             <androidx.appcompat.widget.Toolbar
-                    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
                     collapsing:layout_collapseMode="pin"
-                    toolbar:title="@string/app_name"
                     android:layout_width="match_parent"
                     android:layout_height="54dp">
-
             </androidx.appcompat.widget.Toolbar>
+
+            <include
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    collapsing:layout_collapseMode="pin"
+                    layout="@layout/layout_title_userinfo"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
