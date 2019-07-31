@@ -1,10 +1,11 @@
-package com.yf.viewpractice
+package com.yf.viewpractice.ui
 
 import android.animation.Keyframe
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.yf.viewpractice.R
 import kotlinx.android.synthetic.main.activity_animation.*
 
 class AnimationActivity : AppCompatActivity() {

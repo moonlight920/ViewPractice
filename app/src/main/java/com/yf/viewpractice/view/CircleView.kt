@@ -1,4 +1,4 @@
-package com.yf.viewpractice.view07
+package com.yf.viewpractice.view
 
 import android.animation.Animator
 import android.animation.AnimatorSet
@@ -6,8 +6,10 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.view.KeyEvent
 import android.view.View
 import com.yf.viewpractice.R
+import com.yf.viewpractice.debugLog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class CircleView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
@@ -124,5 +126,10 @@ class CircleView @JvmOverloads constructor(context: Context, attrs: AttributeSet
             }
 
         })
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        debugLog("CircleView onKeyDown")
+        return true
     }
 }

@@ -4,7 +4,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="@android:color/darker_gray"
-             tools:context=".TaiJiFragment">
+             tools:context=".ui.TaiJiFragment">
 
     <com.yf.viewpractice.view.TaiJiView
             android:id="@+id/taijiView"

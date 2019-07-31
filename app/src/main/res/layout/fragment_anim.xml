@@ -3,9 +3,9 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".AnimFragment">
+             tools:context=".ui.AnimFragment">
 
-    <com.yf.viewpractice.view07.CircleView
+    <com.yf.viewpractice.view.CircleView
             android:id="@+id/circleView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

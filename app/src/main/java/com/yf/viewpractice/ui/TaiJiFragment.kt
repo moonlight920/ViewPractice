@@ -1,4 +1,4 @@
-package com.yf.viewpractice
+package com.yf.viewpractice.ui
 
 
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.yf.viewpractice.R
 import com.yf.viewpractice.view.TaiJiView
 
 class TaiJiFragment : Fragment() {
