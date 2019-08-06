@@ -2,14 +2,17 @@ package com.yf.viewpractice
 
 import android.app.Application
 import com.yf.smarttemplate.SmartTemplate
-import com.yf.viewpractice.cup.CupFragment
-import com.yf.viewpractice.expressage.ExpressageFragment
+import com.yf.viewpractice.customview.cup.CupFragment
+import com.yf.viewpractice.customview.expressage.ExpressageFragment
 import com.yf.viewpractice.measure.MeasureFragment
-import com.yf.viewpractice.taglayout.TagLayoutFragment
-import com.yf.viewpractice.ui.AnimFragment
-import com.yf.viewpractice.ui.AnimationActivity
+import com.yf.viewpractice.customview.taglayout.TagLayoutFragment
+import com.yf.viewpractice.anim.AnimFragment
+import com.yf.viewpractice.anim.AnimationActivity
+import com.yf.viewpractice.customview.souhu.loading.TriangleLoadingFragment
 import com.yf.viewpractice.ui.NestedFragment
+import com.yf.viewpractice.ui.PaintAttrFragment
 import com.yf.viewpractice.ui.TaiJiFragment
+import com.yf.viewpractice.ui.TouchEventFragment
 
 class MyApplication : Application() {
     override fun onCreate() {
@@ -18,6 +21,9 @@ class MyApplication : Application() {
         SmartTemplate.init(this) {
             itemList {
                 title = "自定义View"
+                fragmentItem(PaintAttrFragment::class.java) {
+                    title = "Paint属性演示"
+                }
                 fragmentItem(MeasureFragment::class.java) {
                     title = "Measure 1"
                 }
@@ -33,6 +39,9 @@ class MyApplication : Application() {
                 fragmentItem(CupFragment::class.java) {
                     title = "杯子冒泡"
                 }
+                fragmentItem(TriangleLoadingFragment::class.java) {
+                    title = "搜狐视频Loading"
+                }
             }
             itemList {
                 title = "动画"
@@ -45,6 +54,9 @@ class MyApplication : Application() {
             }
             fragmentItem(NestedFragment::class.java) {
                 title = "嵌套滑动"
+            }
+            fragmentItem(TouchEventFragment::class.java) {
+                title = "事件分发"
             }
         }
     }

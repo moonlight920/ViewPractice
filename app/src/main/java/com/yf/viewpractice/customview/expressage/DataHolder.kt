@@ -1,4 +1,4 @@
-package com.yf.viewpractice.expressage
+package com.yf.viewpractice.customview.expressage
 
 object DataHolder {
     val dataList = getData()

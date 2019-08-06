@@ -3,10 +3,10 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".cup.CupFragment">
+             tools:context=".customview.cup.CupFragment">
 
 
-    <com.yf.viewpractice.cup.CupView
+    <com.yf.viewpractice.customview.cup.CupView
             android:id="@+id/cupView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

@@ -1,4 +1,4 @@
-package com.yf.viewpractice.cup
+package com.yf.viewpractice.customview.cup
 
 import kotlin.random.Random
 

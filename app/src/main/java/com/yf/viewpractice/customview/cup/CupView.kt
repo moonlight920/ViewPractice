@@ -1,4 +1,4 @@
-package com.yf.viewpractice.cup
+package com.yf.viewpractice.customview.cup
 
 import android.content.Context
 import android.graphics.*
@@ -6,10 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import com.yf.viewpractice.utils.Utils
 import android.graphics.Shader
-import android.graphics.Color.parseColor
 import android.graphics.LinearGradient
-import com.yf.viewpractice.debugLog
-import kotlin.random.Random
 
 
 class CupView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :

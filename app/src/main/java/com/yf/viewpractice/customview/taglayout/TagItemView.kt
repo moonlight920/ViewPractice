@@ -1,8 +1,7 @@
-package com.yf.viewpractice.taglayout
+package com.yf.viewpractice.customview.taglayout
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet

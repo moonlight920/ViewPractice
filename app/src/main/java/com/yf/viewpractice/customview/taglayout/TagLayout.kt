@@ -1,13 +1,10 @@
-package com.yf.viewpractice.taglayout
+package com.yf.viewpractice.customview.taglayout
 
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.forEach
 import androidx.core.view.forEachIndexed
-import com.yf.viewpractice.R
 
 class TagLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     ViewGroup(context, attrs, defStyleAttr) {

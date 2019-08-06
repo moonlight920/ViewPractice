@@ -1,4 +1,4 @@
-package com.yf.viewpractice.ui
+package com.yf.viewpractice.anim
 
 import android.animation.Keyframe
 import android.animation.ObjectAnimator

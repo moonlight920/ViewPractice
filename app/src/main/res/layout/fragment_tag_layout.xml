@@ -3,19 +3,19 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".taglayout.TagLayoutFragment">
+             tools:context=".customview.taglayout.TagLayoutFragment">
 
     <ScrollView
             android:layout_margin="12dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <com.yf.viewpractice.taglayout.TagLayout
+        <com.yf.viewpractice.customview.taglayout.TagLayout
                 android:id="@+id/tagLayout"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-        </com.yf.viewpractice.taglayout.TagLayout>
+        </com.yf.viewpractice.customview.taglayout.TagLayout>
     </ScrollView>
 
 </FrameLayout>

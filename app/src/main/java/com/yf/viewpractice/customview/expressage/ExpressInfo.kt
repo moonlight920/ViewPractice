@@ -1,4 +1,4 @@
-package com.yf.viewpractice.expressage
+package com.yf.viewpractice.customview.expressage
 
 data class ExpressInfo(
     val date: String,
