@@ -8,6 +8,7 @@ import com.yf.viewpractice.measure.MeasureFragment
 import com.yf.viewpractice.customview.taglayout.TagLayoutFragment
 import com.yf.viewpractice.anim.AnimFragment
 import com.yf.viewpractice.anim.AnimationActivity
+import com.yf.viewpractice.customview.clock.ClockFragment
 import com.yf.viewpractice.customview.souhu.loading.TriangleLoadingFragment
 import com.yf.viewpractice.ui.NestedFragment
 import com.yf.viewpractice.ui.PaintAttrFragment
@@ -41,6 +42,9 @@ class MyApplication : Application() {
                 }
                 fragmentItem(TriangleLoadingFragment::class.java) {
                     title = "搜狐视频Loading"
+                }
+                fragmentItem(ClockFragment::class.java){
+                    title = "炫酷时间锁屏"
                 }
             }
             itemList {
