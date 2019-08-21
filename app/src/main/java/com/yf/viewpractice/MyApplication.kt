@@ -10,6 +10,7 @@ import com.yf.viewpractice.anim.AnimFragment
 import com.yf.viewpractice.anim.AnimationActivity
 import com.yf.viewpractice.customview.clock.ClockFragment
 import com.yf.viewpractice.customview.souhu.loading.TriangleLoadingFragment
+import com.yf.viewpractice.recycler.RecyclerViewFragment
 import com.yf.viewpractice.ui.NestedFragment
 import com.yf.viewpractice.ui.PaintAttrFragment
 import com.yf.viewpractice.ui.TaiJiFragment
@@ -20,6 +21,9 @@ class MyApplication : Application() {
         super.onCreate()
 
         SmartTemplate.init(this) {
+            fragmentItem(RecyclerViewFragment::class.java) {
+                title = "列表控件"
+            }
             itemList {
                 title = "自定义View"
                 fragmentItem(PaintAttrFragment::class.java) {
@@ -43,7 +47,7 @@ class MyApplication : Application() {
                 fragmentItem(TriangleLoadingFragment::class.java) {
                     title = "搜狐视频Loading"
                 }
-                fragmentItem(ClockFragment::class.java){
+                fragmentItem(ClockFragment::class.java) {
                     title = "炫酷时间锁屏"
                 }
             }
