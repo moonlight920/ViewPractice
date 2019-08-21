@@ -8,9 +8,11 @@ import com.yf.viewpractice.measure.MeasureFragment
 import com.yf.viewpractice.customview.taglayout.TagLayoutFragment
 import com.yf.viewpractice.anim.AnimFragment
 import com.yf.viewpractice.anim.AnimationActivity
+import com.yf.viewpractice.constraint.ConstraintFragment
 import com.yf.viewpractice.customview.clock.ClockFragment
 import com.yf.viewpractice.customview.souhu.loading.TriangleLoadingFragment
 import com.yf.viewpractice.recycler.RecyclerViewFragment
+import com.yf.viewpractice.navigation.NaviActivity
 import com.yf.viewpractice.ui.NestedFragment
 import com.yf.viewpractice.ui.PaintAttrFragment
 import com.yf.viewpractice.ui.TaiJiFragment
@@ -65,6 +67,12 @@ class MyApplication : Application() {
             }
             fragmentItem(TouchEventFragment::class.java) {
                 title = "事件分发"
+            }
+            fragmentItem(ConstraintFragment::class.java) {
+                title = "Constraint"
+            }
+            activityItem(NaviActivity::class.java) {
+                title = "Navigation"
             }
         }
     }
