@@ -10,6 +10,7 @@ import com.yf.viewpractice.anim.AnimFragment
 import com.yf.viewpractice.anim.AnimationActivity
 import com.yf.viewpractice.constraint.ConstraintFragment
 import com.yf.viewpractice.customview.clock.ClockFragment
+import com.yf.viewpractice.customview.nestedscroll.NestedViewGroupFragment
 import com.yf.viewpractice.customview.souhu.loading.TriangleLoadingFragment
 import com.yf.viewpractice.recycler.RecyclerViewFragment
 import com.yf.viewpractice.navigation.NaviActivity
@@ -51,6 +52,9 @@ class MyApplication : Application() {
                 }
                 fragmentItem(ClockFragment::class.java) {
                     title = "炫酷时间锁屏"
+                }
+                fragmentItem(NestedViewGroupFragment::class.java) {
+                    title = "自定义嵌套滑动ViewGroup"
                 }
             }
             itemList {
