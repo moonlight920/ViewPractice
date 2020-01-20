@@ -1,10 +1,18 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.kotlin_version = '1.3.41'
+
     ext {
-        kotlin_version = '1.3.41'
-        nav_version = '2.0.0'
+        //remote repository information
+        user = "yfengtech"
+        version = '0.0.2'
+        group_id = "cn.yfengtech"
+        artifact_id = "widgets"
+        description = "an android widgets library"
+        maven_url = 'http://yfengtech.cn:8090/repository/maven-releases'
     }
+
     repositories {
         google()
         jcenter()
@@ -13,7 +21,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -21,11 +28,11 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url rootProject.ext.maven_url }
         maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-        maven { url 'https://jitpack.io' }
         google()
         jcenter()
     }

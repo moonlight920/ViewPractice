@@ -1,1 +1,1 @@
-include ':app', ':douyincopy'
+include ':app', ':douyincopy', ':widgets'
