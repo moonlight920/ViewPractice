@@ -3,12 +3,12 @@ package cn.yfengtech.widgets.practice
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
+import android.support.v4.view.ViewCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import android.view.ViewGroup
 import android.widget.OverScroller
-import androidx.core.view.*
 import kotlin.math.max
 import kotlin.math.min
 
@@ -62,7 +62,10 @@ class NestedViewGroup @JvmOverloads constructor(
             var heightUsed = paddingTop
             var maxWidth = 0
             childBounds.clear()
-            forEachIndexed { _, child ->
+            for (index in 0 until childCount) {
+
+                val child = getChildAt(index)
+
                 measureChildWithMargins(
                     child,
                     widthMeasureSpec,
@@ -71,16 +74,22 @@ class NestedViewGroup @JvmOverloads constructor(
                     heightUsed
                 )
 
-                val left = paddingLeft + child.marginLeft
-                val top = heightUsed + child.marginTop
+                val childMarginLeft = (child.layoutParams as? MarginLayoutParams)?.leftMargin ?: 0
+                val childMarginRight = (child.layoutParams as? MarginLayoutParams)?.rightMargin ?: 0
+                val childMarginTop = (child.layoutParams as? MarginLayoutParams)?.topMargin ?: 0
+                val childMarginBottom =
+                    (child.layoutParams as? MarginLayoutParams)?.bottomMargin ?: 0
+
+                val left = paddingLeft + childMarginLeft
+                val top = heightUsed + childMarginTop
                 val right = left + child.measuredWidth
                 val bottom = top + child.measuredHeight
                 childBounds.add(Rect(left, top, right, bottom))
 
                 // 已用高度累加
-                heightUsed += child.measuredHeight + child.marginTop + child.marginBottom
+                heightUsed += child.measuredHeight + childMarginTop + childMarginBottom
 
-                val childWidth = child.measuredWidth + child.marginLeft + child.marginRight
+                val childWidth = child.measuredWidth + childMarginLeft + childMarginRight
                 maxWidth = max(maxWidth, childWidth)
             }
 
@@ -119,7 +128,8 @@ class NestedViewGroup @JvmOverloads constructor(
      * 布局
      */
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        forEachIndexed { index, view ->
+        for (index in 0 until childCount) {
+            val view = getChildAt(index)
             val rect = childBounds[index]
             view.layout(rect.left, rect.top, rect.right, rect.bottom)
         }
@@ -166,7 +176,8 @@ class NestedViewGroup @JvmOverloads constructor(
             }
             MotionEvent.ACTION_MOVE -> {
                 val offsetY = ev.y - mLastMotionY
-                forEach { view ->
+                for (index in 0 until childCount) {
+                    val view = getChildAt(index)
                     if (view.isScrollContainer) {
                         if (offsetY > 0 && !view.canScrollVertically(-1) ||
                             offsetY < 0 && !view.canScrollVertically(1)

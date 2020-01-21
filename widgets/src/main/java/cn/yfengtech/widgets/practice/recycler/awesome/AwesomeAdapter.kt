@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ScrollView
-import androidx.recyclerview.widget.RecyclerView
+import android.support.v7.widget.RecyclerView
 import cn.yfengtech.widgets.R
 import cn.yfengtech.widgets.debugLog
 import com.yf.smarttemplate.data.DataProvider

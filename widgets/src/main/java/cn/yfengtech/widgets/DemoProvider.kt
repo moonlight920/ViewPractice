@@ -33,12 +33,18 @@ val widgetsDemo = SampleContainer().apply {
         fragmentItem(PaintAttrFragment::class.java) {
             title = "Paint属性演示"
         }
+        fragmentItem(CurveChartFragment::class.java) {
+            title = "折线图"
+            desc = "动态描述走势的图标"
+        }
     }
     fragmentItem(AwesomeRecyclerViewFragment::class.java) {
-        title = "显示长图控件"
+        title = "列表中显示长图"
+        desc = "类似猫眼中 列表里显示长图广告"
     }
     fragmentItem(RecyclerViewFragment::class.java) {
-        title = "列表控件"
+        title = "可左右滑的列表控件"
+        desc = "左滑删除等功能"
     }
 }
 

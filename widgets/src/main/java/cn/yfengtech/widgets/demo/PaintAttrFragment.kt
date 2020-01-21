@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.support.v4.app.Fragment
 import cn.yfengtech.widgets.R
 import cn.yfengtech.widgets.practice.PaintAttrView
 import kotlinx.android.synthetic.main.fragment_paint_attr.*
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_paint_attr.*
  * @created yf
  * @date 2019-08-05 10:10
  */
-class PaintAttrFragment : Fragment() {
+internal class PaintAttrFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

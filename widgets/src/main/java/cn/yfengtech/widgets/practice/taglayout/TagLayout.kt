@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.ViewGroup
-import androidx.core.view.forEachIndexed
 
 class TagLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     ViewGroup(context, attrs, defStyleAttr) {
@@ -26,7 +25,8 @@ class TagLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         // 当前行，height的最大值
         var lineMaxHeight = 0
 
-        forEachIndexed { index, view ->
+        for (index in 0 until childCount){
+            val view = getChildAt(index)
             // 根据剩余空间，计算子view位置
             measureChildWithMargins(
                 view,
@@ -74,7 +74,8 @@ class TagLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        forEachIndexed { index, view ->
+        for (index in 0 until childCount){
+            val view = getChildAt(index)
             val rect = childBounds[index]
             view.layout(rect.left, rect.top, rect.right, rect.bottom)
         }

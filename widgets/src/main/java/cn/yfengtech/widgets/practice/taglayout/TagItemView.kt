@@ -4,8 +4,8 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
+import android.support.v7.widget.AppCompatTextView
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatTextView
 
 class TagItemView @JvmOverloads constructor(
     context: Context,

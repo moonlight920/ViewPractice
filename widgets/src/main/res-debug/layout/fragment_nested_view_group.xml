@@ -26,7 +26,7 @@
                 android:scaleType="centerCrop"
                 android:src="@mipmap/demo_img2" />
 
-        <androidx.core.widget.NestedScrollView
+        <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="40dp">
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/demo_img2" />
-        </androidx.core.widget.NestedScrollView>
+        </android.support.v4.widget.NestedScrollView>
 
         <ImageView
                 android:layout_width="200dp"

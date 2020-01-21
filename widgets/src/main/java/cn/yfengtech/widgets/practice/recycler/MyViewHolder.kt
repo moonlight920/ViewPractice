@@ -1,8 +1,8 @@
 package cn.yfengtech.widgets.practice.recycler
 
+import android.support.v7.widget.AppCompatTextView
 import android.view.View
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.recyclerview.widget.RecyclerView
+import android.support.v7.widget.RecyclerView
 import cn.yfengtech.widgets.R
 
 /**

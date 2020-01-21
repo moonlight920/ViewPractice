@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="curveChartView" format="reference"/>
+    <declare-styleable name="CurveChartView">
+        <attr name="cv_color" format="color"/>
+        <attr name="cv_fillColor" format="color"/>
+        <attr name="cv_labelTextSize" format="dimension"/>
+        <attr name="cv_partCount" format="integer"/>
+        <attr name="cv_strokeWidth" format="dimension"/>
+    </declare-styleable>
+</resources>

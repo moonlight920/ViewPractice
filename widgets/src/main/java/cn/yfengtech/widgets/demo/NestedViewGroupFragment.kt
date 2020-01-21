@@ -2,7 +2,7 @@ package cn.yfengtech.widgets.demo
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import cn.yfengtech.widgets.R
 /**
  * A simple [Fragment] subclass.
  */
-class NestedViewGroupFragment : Fragment() {
+internal class NestedViewGroupFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

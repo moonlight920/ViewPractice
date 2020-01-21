@@ -2,7 +2,7 @@ package cn.yfengtech.widgets.demo
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import cn.yfengtech.widgets.practice.taglayout.TagItemView
 import cn.yfengtech.widgets.practice.taglayout.TagLayout
 import com.yf.smarttemplate.data.DataProvider
 
-class TagLayoutFragment : Fragment() {
+internal class TagLayoutFragment : Fragment() {
 
     val list = DataProvider.getCountryEnNameList()
 

@@ -1,12 +1,12 @@
 package cn.yfengtech.widgets.practice
 
+import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
-import androidx.core.animation.doOnEnd
 
 /**
  * 仿写搜狐播放器加载动画
@@ -137,10 +137,22 @@ internal class TriangleLoadingView @JvmOverloads constructor(
 
 //        animList.playSequentially(anim, rotateAnim)
         animList.play(rotateAnim).with(reverseAnim).after(anim)
-        animList.doOnEnd {
-            animList.play(rotateAnim).with(reverseAnim).after(anim)
-            animList.start()
-        }
+        animList.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                animList.play(rotateAnim).with(reverseAnim).after(anim)
+                animList.start()
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+        })
         animList.start()
     }
 

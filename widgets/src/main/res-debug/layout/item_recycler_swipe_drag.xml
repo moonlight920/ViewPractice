@@ -6,7 +6,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
             android:layout_marginStart="30dp"
             android:id="@+id/tvSummary"
             android:textSize="18sp"
@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
             android:id="@+id/tvDesc"
             android:textSize="16sp"
             android:layout_marginTop="8dp"

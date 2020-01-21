@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import cn.yfengtech.widgets.R
 import cn.yfengtech.widgets.practice.expressage.DataHolder
 import cn.yfengtech.widgets.practice.expressage.ExpressInfo
@@ -16,7 +16,7 @@ import cn.yfengtech.widgets.practice.expressage.ExpressageItemDecoration
 import kotlinx.android.synthetic.main.fragment_expressage.*
 
 
-class ExpressageFragment : Fragment() {
+internal class ExpressageFragment : Fragment() {
 
 
     override fun onCreateView(

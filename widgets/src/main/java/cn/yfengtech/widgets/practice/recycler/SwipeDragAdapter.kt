@@ -3,8 +3,8 @@ package cn.yfengtech.widgets.practice.recycler
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import cn.yfengtech.widgets.R
 import cn.yfengtech.widgets.debugLog
 import com.yf.smarttemplate.data.DataProvider
