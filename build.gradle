@@ -6,7 +6,7 @@ buildscript {
     ext {
         //remote repository information
         user = "yfengtech"
-        version = '0.0.3'
+        version = '0.0.4'
         group_id = "cn.yfengtech"
         artifact_id = "widgets"
         description = "an android widgets library"
