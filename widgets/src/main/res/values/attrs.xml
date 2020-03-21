@@ -8,4 +8,23 @@
         <attr name="cv_partCount" format="integer"/>
         <attr name="cv_strokeWidth" format="dimension"/>
     </declare-styleable>
+
+
+    <!--  层级 折线图-->
+    <attr name="levelLineChartView" format="reference" />
+    <declare-styleable name="LevelLineChartView">
+        <attr name="lc_bottom_desc_spacing" format="dimension" />
+        <attr name="lc_padding_left" format="dimension" />
+        <attr name="lc_padding_top" format="dimension" />
+        <attr name="lc_padding_right" format="dimension" />
+        <attr name="lc_padding_bottom" format="dimension" />
+        <attr name="lc_is_eink" format="boolean" />
+    </declare-styleable>
+
+
+    <!--    默认样式-->
+    <style name="levelLineChartDefault">
+        <item name="lc_bottom_desc_spacing">30dp</item>
+        <item name="lc_is_eink">false</item>
+    </style>
 </resources>

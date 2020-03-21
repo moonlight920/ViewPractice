@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="cn.yfengtech.widgets.demo.CupFragment">
+
+
+    <cn.yfengtech.widgets.chart.LevelLineChartView
+            android:id="@+id/lcView"
+            android:layout_width="600dp"
+            android:layout_height="330dp"
+            android:layout_gravity="center"
+            android:background="#4966b1"
+            app:lc_bottom_desc_spacing="20dp"
+            app:lc_is_eink="false" />
+
+    <Button
+            android:id="@+id/btnAnim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="动画" />
+
+</FrameLayout>

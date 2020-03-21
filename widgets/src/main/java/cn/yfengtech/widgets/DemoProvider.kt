@@ -37,6 +37,10 @@ val widgetsDemo = SampleContainer().apply {
             title = "折线图"
             desc = "动态描述走势的图标"
         }
+        fragmentItem(LevelLineChartFragment::class.java) {
+            title = "层级 折线图"
+            desc = "定制化 层级折线图，带动画"
+        }
     }
     fragmentItem(AwesomeRecyclerViewFragment::class.java) {
         title = "列表中显示长图"
