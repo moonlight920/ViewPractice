@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Share Information</title>
+	<link rel="icon" href="static/image/favicon.png" type="image/png">
+	<link rel="stylesheet" type="text/css" href="static/style/main.css">
+	<script src="static/script/jquery-3.2.0.min.js"></script>
+	<script src="static/script/share.js"></script>
+</head>
+<body>
+<div class="container-contact">
+	<div class="wrap-contact">
+		<form class="contact-form validate-form" method="get" action="message/pull">
+			<span class="contact-form-title">
+			Pull Message
+			</span>
+			<label class="label-input" for="text">Message *</label>
+			<div class="wrap-input validate-input" data-validate="Message is required">
+			<textarea id="text" class="input" name="text" placeholder="Message"></textarea>
+			<span class="focus-input"></span>
+			</div>
+			<div class="container-contact-form-btn">
+			<button class="contact-form-btn">
+			Pull Message
+			</button>
+			</div>
+		</form>
+		<form class="contact-form validate-form" method="post" action="message/share">
+			<span class="contact-form-title">
+				Share Message
+			</span>
+			<label class="label-input" for="sharedText">Message *</label>
+			<div class="wrap-input validate-input" data-validate="Message is required">
+				<textarea id="sharedText" class="input" name="text" placeholder="Write message"></textarea>
+				<span class="focus-input"></span>
+			</div>
+			<div class="container-contact-form-btn">
+				<button class="contact-form-btn">
+					Share Message
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+</body></html>

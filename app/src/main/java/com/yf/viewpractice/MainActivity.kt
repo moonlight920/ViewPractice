@@ -2,6 +2,8 @@ package com.yf.viewpractice
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import cn.yfengtech.server.SimpleServer
+import cn.yfengtech.server.WebServerFragment
 import cn.yfengtech.widgets.demo.*
 import com.yf.smarttemplate.SmartTemplate
 
@@ -11,6 +13,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         SmartTemplate.apply(this) {
+            fragmentItem(WebServerFragment::class.java) {
+                title = "测试web服务"
+                desc = "访问8080端口"
+            }
             itemList {
                 title = "widgets集合"
                 desc = "演示一些自定义控件"
