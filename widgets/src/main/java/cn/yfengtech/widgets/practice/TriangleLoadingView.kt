@@ -14,7 +14,7 @@ import android.view.View
  * @created songyifeng
  * @date 2019-08-06 19:30
  */
-internal class TriangleLoadingView @JvmOverloads constructor(
+class TriangleLoadingView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0

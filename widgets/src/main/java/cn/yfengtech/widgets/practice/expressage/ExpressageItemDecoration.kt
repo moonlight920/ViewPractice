@@ -3,12 +3,12 @@ package cn.yfengtech.widgets.practice.expressage
 import android.content.res.Resources
 import android.graphics.*
 import android.view.View
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import cn.yfengtech.widgets.R
 import cn.yfengtech.widgets.Utils
 import cn.yfengtech.widgets.debugLog
 
-class ExpressageItemDecoration : RecyclerView.ItemDecoration() {
+class ExpressageItemDecoration : androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
 
     val OFFSET_TOP = Utils.dp2px(10f)
     val OFFSET_LEFT = Utils.dp2px(108f)
@@ -65,12 +65,12 @@ class ExpressageItemDecoration : RecyclerView.ItemDecoration() {
         color = Color.GRAY
     }
 
-    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+    override fun onDrawOver(c: Canvas, parent: androidx.recyclerview.widget.RecyclerView, state: androidx.recyclerview.widget.RecyclerView.State) {
         // 此处会覆盖item
 
         for (index in 0 until parent.childCount) {
             val child = parent.getChildAt(index)
-            val position = (child.layoutParams as (RecyclerView.LayoutParams)).viewLayoutPosition
+            val position = (child.layoutParams as (androidx.recyclerview.widget.RecyclerView.LayoutParams)).viewLayoutPosition
             val expressInfo = DataHolder.dataList[position]
 
             debugLog("layout index : $position")
@@ -170,7 +170,7 @@ class ExpressageItemDecoration : RecyclerView.ItemDecoration() {
 
     }
 
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+    override fun onDraw(c: Canvas, parent: androidx.recyclerview.widget.RecyclerView, state: androidx.recyclerview.widget.RecyclerView.State) {
         // 此处画在item下面
         for (index in 0 until parent.childCount) {
             val child = parent.getChildAt(index)
@@ -226,7 +226,7 @@ class ExpressageItemDecoration : RecyclerView.ItemDecoration() {
 
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: androidx.recyclerview.widget.RecyclerView, state: androidx.recyclerview.widget.RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
         outRect.set(OFFSET_LEFT, OFFSET_TOP, 0, OFFSET_BOTTOM)
     }

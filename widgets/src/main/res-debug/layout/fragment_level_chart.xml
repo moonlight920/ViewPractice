@@ -6,7 +6,6 @@
         android:layout_height="match_parent"
         tools:context="cn.yfengtech.widgets.demo.CupFragment">
 
-
     <cn.yfengtech.widgets.chart.LevelLineChartView
             android:id="@+id/lcView"
             android:layout_width="600dp"

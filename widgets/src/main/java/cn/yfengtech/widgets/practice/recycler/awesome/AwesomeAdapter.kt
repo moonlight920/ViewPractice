@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ScrollView
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import cn.yfengtech.widgets.R
 import cn.yfengtech.widgets.debugLog
 import com.yf.smarttemplate.data.DataProvider
@@ -22,7 +22,7 @@ private const val TYPE_LONG_IMG_REVERSED = 2
  * @date 2019-08-18
  */
 class AwesomeAdapter(private val context: Context) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     private var mListenerList: ArrayList<MyScrollListener> = arrayListOf()
 
@@ -33,7 +33,7 @@ class AwesomeAdapter(private val context: Context) :
         else if (position == 28) TYPE_LONG_IMG_REVERSED
         else TYPE_NORMAL
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         if (viewType == TYPE_LONG_IMG) {
             val view =
                 LayoutInflater.from(context)
@@ -56,7 +56,7 @@ class AwesomeAdapter(private val context: Context) :
         return data.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is MyViewHolder -> {
                 holder.tvSummary.text = data[position]
@@ -70,7 +70,7 @@ class AwesomeAdapter(private val context: Context) :
         }
     }
 
-    inner class LongImgHolder(view: View, reversed: Boolean) : RecyclerView.ViewHolder(view) {
+    inner class LongImgHolder(view: View, reversed: Boolean) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         val longImgView = view.findViewById<ImageView>(R.id.longImgView)
         val scrollView = view.findViewById<ScrollView>(R.id.scrollView)
 

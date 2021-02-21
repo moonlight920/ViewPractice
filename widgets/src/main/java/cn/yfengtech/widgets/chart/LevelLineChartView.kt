@@ -10,11 +10,14 @@ import android.util.Log
 import android.util.Property
 import android.util.TypedValue
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import cn.yfengtech.widgets.R
+import kotlin.math.abs
 
 private const val TAG = "LevelLineChartView"
 private const val DEBUG = true
-private const val ANIM_DURING = 3000L
+private const val MAX_ANIM_DURING = 3000L
+private const val MIN_ANIM_DURING = 1000L
 
 /**
  * 折线图渐变色
@@ -464,27 +467,44 @@ class LevelLineChartView @JvmOverloads constructor(
      */
     @JvmOverloads
     fun setCurrentLevel(level: Level, levelProgress: Float, anim: Boolean = false) {
+        log("setCurrentLevel  level:${level} levelProgress:$levelProgress anim:$anim")
         if (levelProgress < 0 || levelProgress > 1) throw IllegalArgumentException("progress必须在0-1之间")
         mCurrentLevel = level
         mCurrentLevelProgress = levelProgress
-        post {
+
+        if (mHorizontalLinePathList.size > 0) {
             val totalProgress = calcPercentage(level, levelProgress)
-            log("totalProgress : $totalProgress")
-            if (anim) {
-                val objAnim =
-                    ObjectAnimator.ofFloat(
-                        this,
-                        propChartProgress,
-                        mLinePathProgress,
-                        totalProgress
-                    )
-                objAnim.duration = ANIM_DURING
-                objAnim.start()
-            } else {
-                synchronized(mLinePathProgress) {
-                    mLinePathProgress = totalProgress
-                    invalidate()
-                }
+            setTotalProgress(totalProgress, anim)
+        } else {
+            // 有时onLayout还没有执行，导致path还没计算出来
+            post {
+                val totalProgress = calcPercentage(level, levelProgress)
+                setTotalProgress(totalProgress, anim)
+            }
+        }
+    }
+
+    /**
+     * 设置折线进度
+     */
+    private fun setTotalProgress(totalProgress: Float, anim: Boolean) {
+        log("totalProgress : $totalProgress")
+        if (anim) {
+            val objAnim =
+                ObjectAnimator.ofFloat(
+                    this,
+                    propChartProgress,
+                    mLinePathProgress,
+                    totalProgress
+                )
+            objAnim.interpolator = AccelerateDecelerateInterpolator()
+            val animDuring = (MAX_ANIM_DURING * abs(mLinePathProgress - totalProgress)).toLong()
+            objAnim.duration = if (animDuring < MIN_ANIM_DURING) MIN_ANIM_DURING else animDuring
+            objAnim.start()
+        } else {
+            synchronized(mLinePathProgress) {
+                mLinePathProgress = totalProgress
+                invalidate()
             }
         }
     }

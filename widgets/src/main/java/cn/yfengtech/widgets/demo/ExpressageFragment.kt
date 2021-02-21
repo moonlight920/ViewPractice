@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cn.yfengtech.widgets.R
 import cn.yfengtech.widgets.practice.expressage.DataHolder
 import cn.yfengtech.widgets.practice.expressage.ExpressInfo
@@ -16,7 +16,7 @@ import cn.yfengtech.widgets.practice.expressage.ExpressageItemDecoration
 import kotlinx.android.synthetic.main.fragment_expressage.*
 
 
-internal class ExpressageFragment : Fragment() {
+class ExpressageFragment : androidx.fragment.app.Fragment() {
 
 
     override fun onCreateView(
@@ -29,13 +29,18 @@ internal class ExpressageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        recyclerView.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(
+                context,
+                androidx.recyclerview.widget.RecyclerView.VERTICAL,
+                false
+            )
         recyclerView.addItemDecoration(ExpressageItemDecoration())
         recyclerView.adapter =
             MyAdapter(DataHolder.dataList)
     }
 
-    class MyAdapter(var list: List<ExpressInfo>) : RecyclerView.Adapter<MyViewHolder>() {
+    class MyAdapter(var list: List<ExpressInfo>) : androidx.recyclerview.widget.RecyclerView.Adapter<MyViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.item_express, parent, false)
             return MyViewHolder(view)
@@ -61,7 +66,7 @@ internal class ExpressageFragment : Fragment() {
 
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         val tvSummary = itemView.findViewById<TextView>(R.id.tvSummary)
         val tvDesc = itemView.findViewById<TextView>(R.id.tvDesc)
     }

@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import cn.yfengtech.widgets.R
 import cn.yfengtech.widgets.practice.TaiJiView
 
-internal class TaiJiFragment : Fragment() {
+class TaiJiFragment : androidx.fragment.app.Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

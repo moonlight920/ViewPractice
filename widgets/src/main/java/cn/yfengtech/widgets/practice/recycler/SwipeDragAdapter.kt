@@ -3,8 +3,8 @@ package cn.yfengtech.widgets.practice.recycler
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ItemTouchHelper
 import cn.yfengtech.widgets.R
 import cn.yfengtech.widgets.debugLog
 import com.yf.smarttemplate.data.DataProvider
@@ -13,7 +13,7 @@ import com.yf.smarttemplate.data.DataProvider
  * Created by yf.
  * @date 2019-08-18
  */
-class SwipeDragAdapter(private val context: Context) : RecyclerView.Adapter<MyViewHolder>() {
+class SwipeDragAdapter(private val context: Context) : androidx.recyclerview.widget.RecyclerView.Adapter<MyViewHolder>() {
 
     val data = DataProvider.getCountryEnNameList()
 
@@ -32,19 +32,19 @@ class SwipeDragAdapter(private val context: Context) : RecyclerView.Adapter<MyVi
 
     class SwipeController : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
         override fun onMove(
-            recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            target: RecyclerView.ViewHolder
+            recyclerView: androidx.recyclerview.widget.RecyclerView,
+            viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder,
+            target: androidx.recyclerview.widget.RecyclerView.ViewHolder
         ): Boolean {
             debugLog("onMove")
             return false
         }
 
-        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        override fun onSwiped(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, direction: Int) {
             debugLog("onSwiped ${(viewHolder as MyViewHolder).tvSummary.text}")
         }
 
-        override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+        override fun onSelectedChanged(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder?, actionState: Int) {
             super.onSelectedChanged(viewHolder, actionState)
             val action = when(actionState){
                 ItemTouchHelper.ACTION_STATE_IDLE -> "IDLE"

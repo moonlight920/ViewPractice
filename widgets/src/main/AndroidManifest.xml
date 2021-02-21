@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="cn.yfengtech.widgets" />
+        package="cn.yfengtech.widgets">
+
+    <application>
+        <service android:name=".demo.LevelLineChartFragment$B" />
+    </application>
+</manifest>
