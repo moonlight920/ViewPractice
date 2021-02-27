@@ -1,45 +1,58 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Share Information</title>
-	<link rel="icon" href="static/image/favicon.png" type="image/png">
-	<link rel="stylesheet" type="text/css" href="static/style/main.css">
-	<script src="static/script/jquery-3.2.0.min.js"></script>
-	<script src="static/script/share.js"></script>
+<head>
+    <title>App Debug Tools</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='shortcut icon' href='static/favicon.ico' type='image/x-icon'>
+
+    <script src="static/script/jquery.min.js"></script>
+    <script src="static/script/bootstrap.min.js"></script>
+
+    <link href="static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="custom.css" rel="stylesheet">
+
 </head>
 <body>
-<div class="container-contact">
-	<div class="wrap-contact">
-		<form class="contact-form validate-form" method="get" action="message/pull">
-			<span class="contact-form-title">
-			Pull Message
-			</span>
-			<label class="label-input" for="text">Message *</label>
-			<div class="wrap-input validate-input" data-validate="Message is required">
-			<textarea id="text" class="input" name="text" placeholder="Message"></textarea>
-			<span class="focus-input"></span>
-			</div>
-			<div class="container-contact-form-btn">
-			<button class="contact-form-btn">
-			Pull Message
-			</button>
-			</div>
-		</form>
-		<form class="contact-form validate-form" method="post" action="message/share">
-			<span class="contact-form-title">
-				Share Message
-			</span>
-			<label class="label-input" for="sharedText">Message *</label>
-			<div class="wrap-input validate-input" data-validate="Message is required">
-				<textarea id="sharedText" class="input" name="text" placeholder="Write message"></textarea>
-				<span class="focus-input"></span>
-			</div>
-			<div class="container-contact-form-btn">
-				<button class="contact-form-btn">
-					Share Message
-				</button>
-			</div>
-		</form>
-	</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">App Debug Tools</a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container padding-fifty">
+
+    <div class="row padding-twenty">
+        <div class="col-sm-2">
+            <ul id="hdt-nav" class="nav nav-pills nav-stacked">
+                <!--导航栏 标签区-->
+            </ul>
+        </div>
+        <div id="hdt-content" class="col-sm-10 padding-twenty">
+            <div class="padding-twenty" style="margin-bottom: 16px">
+                <!--主窗口 标签区-->
+            </div>
+        </div>
+
+    </div>
+
+    <div id="snackbar">Data Updated Successfully</div>
+
 </div>
-</body></html>
+
+<script src="app.js"></script>
+</body>
+</html>

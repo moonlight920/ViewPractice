@@ -1,8 +1,8 @@
 package cn.yfengtech.server
 
 import android.content.Context
-import fi.iki.elonen.NanoHTTPD
+import cn.yfengtech.server.NanoHTTPD
 
-internal interface HttpHandler {
+interface HttpHandler {
     fun handle(context: Context, session: NanoHTTPD.IHTTPSession): NanoHTTPD.Response?
 }

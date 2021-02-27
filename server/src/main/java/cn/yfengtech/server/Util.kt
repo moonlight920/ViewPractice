@@ -6,7 +6,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
-object Util {
+internal object Util {
     fun assetsToCache(context: Context) {
         val assets: AssetManager = context.assets
         val cacheDir: File = context.cacheDir
@@ -36,12 +36,11 @@ object Util {
                 } else {
                     val file = File(destFile, newPath)
                     val parentFile = file.parentFile!!
-                    if (!file.exists()) {
-                        if (!parentFile.exists()) {
-                            parentFile.mkdirs()
-                        }
-                        copyFileFromAsset(assets, basePath, newPath, file)
+                    if (!parentFile.exists()) {
+                        parentFile.mkdirs()
                     }
+                    // 不判断文件是否存在，防止缓存
+                    copyFileFromAsset(assets, basePath, newPath, file)
                 }
             }
         }

@@ -1,19 +1,32 @@
 package cn.yfengtech.server
 
 import android.content.Context
+import cn.yfengtech.server.impl.BaseApiHttpHandler
 import cn.yfengtech.server.impl.IndexHttpHandler
 import cn.yfengtech.server.impl.MediaFileHttpHandler
-import fi.iki.elonen.NanoHTTPD
+import java.io.File
+import java.net.Inet4Address
+import java.net.InetAddress
+import java.net.NetworkInterface
+import java.net.SocketException
+import java.util.*
 
-class SimpleServer(private val applicationContext: Context) : NanoHTTPD(8080) {
+class SimpleServer @JvmOverloads constructor(
+    private val applicationContext: Context,
+    apiHttpHandler: BaseApiHttpHandler,
+    port: Int = 9000
+) : NanoHTTPD(port) {
 
     private val handlerList = mutableListOf(
+        // 首页
         IndexHttpHandler(),
-        MediaFileHttpHandler()
+        // 其他媒体文件
+        MediaFileHttpHandler(),
+        // 上层实现的配置和功能
+        apiHttpHandler
     )
 
     init {
-        start(SOCKET_READ_TIMEOUT, true)
         Util.assetsToCache(applicationContext)
     }
 
@@ -22,18 +35,27 @@ class SimpleServer(private val applicationContext: Context) : NanoHTTPD(8080) {
             val response = it.handle(applicationContext, session)
             if (response != null) return response
         }
-        var msg = "<html><body><h1>Hello server</h1>\n"
-        val parms = session.parms
-        msg += if (parms["username"] == null) {
-            """
-<form action='?' method='get'>
-    <p>Your name: <input type='text' name='username'></p>
-</form>
-"""
-        } else {
-            "<p>Hello, " + parms["username"] + "!</p>"
+        val file = File(applicationContext.cacheDir, "/404.html")
+        // 返回404
+        return newFixedLengthResponse(file.readText())
+    }
+
+    fun getHostAddress(): String? {
+        try {
+            val en: Enumeration<NetworkInterface> = NetworkInterface.getNetworkInterfaces()
+            while (en.hasMoreElements()) {
+                val intf: NetworkInterface = en.nextElement()
+                val enumIpAddress: Enumeration<InetAddress> = intf.inetAddresses
+                while (enumIpAddress.hasMoreElements()) {
+                    val inetAddress: InetAddress = enumIpAddress.nextElement()
+                    if (!inetAddress.isLoopbackAddress && inetAddress is Inet4Address) {
+                        return inetAddress.getHostAddress()
+                    }
+                }
+            }
+        } catch (ex: SocketException) {
+            ex.printStackTrace()
         }
-        val aa = "<p>uri:${session.uri},method:${session.method.name}</p>"
-        return newFixedLengthResponse("$msg $aa</body></html>\n")
+        return null
     }
 }

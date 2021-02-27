@@ -3,7 +3,7 @@ package cn.yfengtech.server.impl
 import android.content.Context
 import android.webkit.MimeTypeMap
 import cn.yfengtech.server.HttpHandler
-import fi.iki.elonen.NanoHTTPD
+import cn.yfengtech.server.NanoHTTPD
 import java.io.File
 
 internal class MediaFileHttpHandler : HttpHandler {

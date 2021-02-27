@@ -2,10 +2,9 @@ package com.yf.viewpractice
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import cn.yfengtech.server.SimpleServer
-import cn.yfengtech.server.WebServerFragment
 import cn.yfengtech.widgets.demo.*
 import com.yf.smarttemplate.SmartTemplate
+import com.yf.viewpractice.server.WebServerFragment
 
 class MainActivity : AppCompatActivity() {
 
