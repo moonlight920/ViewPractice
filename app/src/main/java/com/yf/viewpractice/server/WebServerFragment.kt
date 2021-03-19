@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.yf.viewpractice.server.plugins.OpenH5Plugin
+import com.yf.viewpractice.server.plugins.PullAppDataPlugin
+import com.yf.viewpractice.server.plugins.PushMockPushPlugin
 import cn.yfengtech.server.SimpleServer
 
 class WebServerFragment : Fragment() {
@@ -17,8 +20,8 @@ class WebServerFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        server = SimpleServer(requireContext().applicationContext, DemoApiHttpHandler(), 9000)
-        server.start()
+
+
     }
 
     override fun onDestroy() {
@@ -43,8 +46,17 @@ class WebServerFragment : Fragment() {
         )
 
 
+        val port = 9001
 
-        tv.text = server.getHostAddress() + ":9000"
+        val server = SimpleServer(requireContext(), port)
+        server.setWebTitle("叫我Title")
+        server.loadPlugin(PushMockPushPlugin())
+        server.loadPlugin(OpenH5Plugin())
+        server.loadPlugin(PullAppDataPlugin())
+        server.start()
+
+
+        tv.text = server.getHostAddress() + ":$port"
 
         return contentView
     }

@@ -1,5 +1,8 @@
 package com.yf.viewpractice
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import cn.yfengtech.widgets.demo.*
@@ -12,6 +15,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         SmartTemplate.apply(this) {
+            executionItem {
+                title = "打开应用市场"
+                execute {
+                    val packageName = "com.huaxiaozhu.rider"
+                    try {
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("market://details?id=$packageName")
+                            )
+                        )
+                    } catch (e: ActivityNotFoundException) {
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+                            )
+                        )
+                    }
+                }
+            }
             fragmentItem(WebServerFragment::class.java) {
                 title = "测试web服务"
                 desc = "访问8080端口"

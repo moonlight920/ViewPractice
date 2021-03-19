@@ -3,12 +3,13 @@ package cn.yfengtech.server.impl
 import android.content.Context
 import androidx.annotation.WorkerThread
 import cn.yfengtech.server.HttpHandler
-import cn.yfengtech.server.NanoHTTPD
 import cn.yfengtech.server.model.Config
 import com.google.gson.Gson
+import cn.yfengtech.server.NanoHTTPD
+import cn.yfengtech.server.getPostBodyMap
+import cn.yfengtech.server.model.Response
 
 abstract class BaseApiHttpHandler : HttpHandler {
-
 
     /**
      * 获取web所需的配置信息
@@ -23,13 +24,23 @@ abstract class BaseApiHttpHandler : HttpHandler {
      * 子线程回调，注意切换线程操作
      */
     @WorkerThread
-    abstract fun handleSubmitResult(context: Context, categoryId: String, params: Map<String, String>): Boolean
+    abstract fun handleSubmitResult(
+        context: Context,
+        categoryId: String,
+        params: Map<String, String>
+    ): Response
 
     /**
      * web端从app中拉取数据时调用
      */
     @WorkerThread
-    abstract fun pullAppData(params: Map<String, String>): String
+    abstract fun pullAppData(
+        context: Context,
+        pullFuncId: String,
+        params: Map<String, String>
+    ): Response
+
+    open fun handleCustom(context: Context, session: NanoHTTPD.IHTTPSession): Response? = null
 
     private val mGson = Gson()
 
@@ -38,35 +49,34 @@ abstract class BaseApiHttpHandler : HttpHandler {
         if (session.method == NanoHTTPD.Method.GET && session.uri == "/api/config") {
             // 下发配置信息
             val jsonText = mGson.toJson(getConfig())
-            return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, NanoHTTPD.MIME_PLAINTEXT, jsonText)
+            return NanoHTTPD.newFixedLengthResponse(
+                NanoHTTPD.Response.Status.OK,
+                NanoHTTPD.MIME_PLAINTEXT,
+                jsonText
+            )
         }
 
         if (session.method == NanoHTTPD.Method.POST) {
-            var params = mapOf<String, String>()
-            try {
-                val files = hashMapOf<String, String>()
-                session.parseBody(files)
-                if (!session.parms.isNullOrEmpty()) {
-                    params = session.parms
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            val params = session.getPostBodyMap()
 
             if (session.uri == "/api/submit") {
                 // 交给子类来处理
-                val isSuccess = handleSubmitResult(context, params["categoryId"] ?: "", params)
-                if (isSuccess) {
-                    return NanoHTTPD.newFixedLengthResponse("App端处理成功")
-                }
+                val response = handleSubmitResult(context, params["categoryId"] ?: "", params)
+                return NanoHTTPD.newJson(mGson.toJson(response))
             }
 
             if (session.uri == "/api/pull") {
-                val result = pullAppData(params)
-                return NanoHTTPD.newFixedLengthResponse(result)
+                val result = pullAppData(context, params["pullFuncId"] ?: "", params)
+                return NanoHTTPD.newJson(mGson.toJson(result))
             }
-
         }
+
+        // 处理 自定义接口
+        val response = handleCustom(context, session)
+        if (response != null) {
+            return NanoHTTPD.newJson(mGson.toJson(response))
+        }
+
         return null
     }
 }

@@ -1,58 +1,209 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
-    <title>App Debug Tools</title>
-    <meta charset="utf-8">
+    <title>Debug Server</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='shortcut icon' href='static/favicon.ico' type='image/x-icon'>
 
     <script src="static/script/jquery.min.js"></script>
     <script src="static/script/bootstrap.min.js"></script>
-
+    <script src="static/script/vue.js"></script>
+    <script src="static/script/httpVueLoader.js"></script>
     <link href="static/style/bootstrap.min.css" rel="stylesheet">
-    <link href="custom.css" rel="stylesheet">
-
 </head>
+
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">App Debug Tools</a>
-        </div>
-    </div>
-</nav>
-
-
-<div class="container padding-fifty">
-
-    <div class="row padding-twenty">
-        <div class="col-sm-2">
-            <ul id="hdt-nav" class="nav nav-pills nav-stacked">
-                <!--导航栏 标签区-->
-            </ul>
-        </div>
-        <div id="hdt-content" class="col-sm-10 padding-twenty">
-            <div class="padding-twenty" style="margin-bottom: 16px">
-                <!--主窗口 标签区-->
+    <div id="my-app">
+        <my-header v-if="htmlTitle" v-bind:title="htmlTitle"></my-header>
+        <div class="container padding-fifty">
+            <div class="row padding-twenty">
+                <!--左侧导航栏-->
+                <div class="col-sm-2">
+                    <ul id="hdt-nav" class="nav nav-pills nav-stacked">
+                        <li v-for="(v,k) in plugins" :key="k" @click="currentTab=k" :class="{active:currentTab===k}">
+                            <a>{{v.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--操作区-->
+                <div id="hdt-content" class="col-sm-10">
+                    <div v-if="currentTab>=0" class="padding-twenty" style="margin-bottom: 16px">
+                        <div v-for="(plugin,index) in plugins">
+                            <div v-show="index === currentTab">
+                                <push-plugin v-if="plugin.type===1" v-bind:config="plugin"></push-plugin>
+                                <pull-plugin v-else-if="plugin.type===2" v-bind:config="plugin"></pull-plugin>
+                                <!-- 动态组件，在获取配置后生成 -->
+                                <component v-else-if="plugin.type===3" v-bind:is="plugin.config.componentName">
+                                </component>
+                                <custom-plugin v-else v-bind:config="plugin"></custom-plugin>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div id="snackbar"></div>
         </div>
-
     </div>
+    <script type="text/javascript">
+        new Vue({
+            el: '#my-app',
+            data: {
+                currentTab: -1,
+                tabView: '',
+                plugins: [],
+                htmlTitle: ''
+            },
+            components: {
+                'my-header': httpVueLoader('components/MyHeader.vue'),
+                'push-plugin': httpVueLoader('components/PushPlugin.vue'),
+                'pull-plugin': httpVueLoader('components/PullPlugin.vue'),
+                'custom-plugin': httpVueLoader('components/CustomPlugin.vue')
+            },
+            mounted() {
+                let root = this;
 
-    <div id="snackbar">Data Updated Successfully</div>
+                // const fake = '{"title":"hxz debug tools","plugins":[{"pid":"ShowCommonConfigPlugin","name":"手机属性","type":2,"config":{"desc":"获取一些配置信息","pullList":[{"key":"net-common","name":"请求公参"},{"key":"apollo","name":"Apollo配置"}]}},{"pid":"ApolloPlugin","name":"Apollo查询","type":1,"config":{"desc":"","inputList":[{"demos":[],"desc":"输入toggle","key":"toggle"}]}},{"pid":"PushMockPlugin","name":"模拟push","type":1,"config":{"desc":"可以用来直接发送push直达app","inputList":[{"demos":[{"data":"/json/pay_in_car.json","name":"车内付","type":1},{"data":"/json/modify_dest.json","name":"修改目的地","type":1},{"data":"{}","name":"空数据","type":2}],"desc":"请输入一段json","key":"key_push"}]}},{"pid":"H5MockPlugin","name":"H5任意门","type":1,"config":{"desc":"发送url，端上打开","inputList":[{"demos":[{"data":"https://kfpub.hongyibo.com.cn/static/kfpub/6b19c04bce06c1c3241d46b9f493876b/index.html","name":"一路迎春发","type":2},{"data":"https://kfpub.hongyibo.com.cn/static/kfpub/7cc6d2f0d31d1e7c5cac191ddabc460f/index.html","name":"防疫","type":2},{"data":"kfhxztravel://router/setting","name":"Native设置页面","type":2}],"desc":"请输入一个HttpUrl","key":"key_h5_2"},{"demos":[{"data":"https://kfpub.hongyibo.com.cn/static/kfpub/6b19c04bce06c1c3241d46b9f493876b/index.html","name":"一路迎春发","type":2},{"data":"https://kfpub.hongyibo.com.cn/static/kfpub/7cc6d2f0d31d1e7c5cac191ddabc460f/index.html","name":"防疫","type":2},{"data":"kfhxztravel://router/setting","name":"Native设置页面","type":2}],"desc":"请输入一个HttpUrl","key":"key_h5_1"}]}},{"pid":"LottieMockPlugin","name":"lottie预览","type":1,"config":{"desc":"填入lottie的json数据，在端上预览动画","inputList":[{"demos":[{"data":"/json/suihua.json","name":"碎花动画","type":1},{"data":"/json/lottie-rocket.json","name":"小火箭🚀","type":1},{"data":"/json/lottie-lurking-cat.json","name":"小猫","type":1}],"desc":"请输入一个lottie的json数据","key":"key_lottie"}]}},{"pid":"ShowUserPlugin","name":"显示当前用户","type":2,"config":{"desc":"获取当前用户信息","pullList":[{"key":"token","name":"用户token"},{"key":"uid","name":"用户uid"},{"key":"phonenumber","name":"用户手机号"},{"key":"user","name":"用户信息"}]}},{"pid":"ShowOrderDetailPlugin","name":"显示当前订单","type":2,"config":{"desc":"获取当前订单信息","pullList":[{"key":"order","name":"订单"},{"key":"oid","name":"订单号"}]}}]}'
+                // root.plugins = JSON.parse(fake).plugins
 
-</div>
+                $.ajax({
+                    url: "api/config", success: function (result) {
+                        result = JSON.parse(result);
+                        if (result != null) {
+                            document.title = result.title
+                            root.htmlTitle = result.title
+                            if (result.plugins.length > 0) {
+                                for (let index = 0; index < result.plugins.length; index++) {
+                                    let plugin = result.plugins[index]
+                                    // type是3，此插件为自定义的vue组件，先动态注册进来
+                                    if (plugin.type === 3) {
+                                        registerComponent(plugin.config.componentName, httpVueLoader.load(plugin.config.componentPath))
+                                    }
+                                }
+                                root.plugins = result.plugins
+                                root.currentTab = 0
+                            }
+                        } else {
+                            showErrorInfo('获取config失败')
+                        }
+                    }
+                });
+            }
+        });
+        /**
+         * 动态注册组件，然后使用
+         * name 组件名称
+         * path 组件相对路径
+         */
+        function registerComponent(name, path) {
+            Vue.component(name, path);
+        }
 
-<script src="app.js"></script>
+        function showSuccessInfo(message) {
+            var snackbarId = "snackbar";
+            var snackbarElement = $("#" + snackbarId);
+            snackbarElement.addClass("show");
+            snackbarElement.css({ "backgroundColor": "#5cb85c" });
+            snackbarElement.html(message)
+            setTimeout(function () {
+                snackbarElement.removeClass("show");
+            }, 3000);
+        }
+
+        function showErrorInfo(message) {
+            var snackbarId = "snackbar";
+            var snackbarElement = $("#" + snackbarId);
+            snackbarElement.addClass("show");
+            snackbarElement.css({ "backgroundColor": "#d9534f" });
+            snackbarElement.html(message)
+            setTimeout(function () {
+                snackbarElement.removeClass("show");
+            }, 3000);
+        }
+    </script>
+    <style>
+        .padding-fifty {
+            padding-top: 50px;
+        }
+
+        .padding-twenty {
+            padding-top: 20px;
+        }
+
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #5cb85c;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        .display-none {
+            display: none;
+        }
+
+        .list-group-item {
+            word-break: break-all;
+        }
+
+        .list-group-item.selected {
+            background: #dff0d8 !important;
+            color: #3c763d !important;
+            font-weight: bold;
+        }
+
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+    </style>
 </body>
+
 </html>

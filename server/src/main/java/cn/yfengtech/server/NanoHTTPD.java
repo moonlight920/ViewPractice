@@ -2180,6 +2180,10 @@ public abstract class NanoHTTPD {
         return newFixedLengthResponse(Response.Status.OK, NanoHTTPD.MIME_HTML, msg);
     }
 
+    public static Response newJson(String jsonStr){
+        return newFixedLengthResponse(Response.Status.OK,NanoHTTPD.MIME_PLAINTEXT,jsonStr);
+    }
+
     /**
      * Override this to customize the server.
      * <p/>

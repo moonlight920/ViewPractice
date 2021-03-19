@@ -63,3 +63,17 @@ internal object Util {
         }
     }
 }
+
+fun NanoHTTPD.IHTTPSession.getPostBodyMap():Map<String,String>{
+    var params = mapOf<String, String>()
+    try {
+        val files = hashMapOf<String, String>()
+        this.parseBody(files)
+        if (!this.parms.isNullOrEmpty()) {
+            params = this.parms
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+    return params
+}

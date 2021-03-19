@@ -6,6 +6,7 @@ package cn.yfengtech.server.model
 class Config {
 
     private val categoryList = mutableListOf<Category>()
+    private val pullFuncList = mutableListOf<PullFunc>()
 
     /**
      * 创建一个分类
@@ -15,6 +16,36 @@ class Config {
         if (c.id == null) throw IllegalArgumentException("category id can't is null")
         if (c.name == null) throw IllegalArgumentException("category name can't is null")
         categoryList.add(c)
+    }
+
+    fun pullData(pullFunc: PullFunc.() -> Unit) {
+        val p = PullFunc().apply(pullFunc)
+        if (p.id == null) throw IllegalArgumentException("pullFunc id can't is null")
+        if (p.name == null) throw IllegalArgumentException("pullFunc name can't is null")
+        pullFuncList.add(p)
+    }
+
+    class PullFunc {
+        var id: String? = null
+        var name: String? = null
+        var desc: String? = null
+        private val pullList = mutableListOf<PullOption>()
+
+        fun pullOption(item: PullOption.() -> Unit) {
+            pullList.add(PullOption().apply(item))
+        }
+
+        class PullOption {
+            /**
+             * 该输入项提交时的参数key，从form表单中根据这个参数获取对应的数据
+             */
+            var paramKey: String? = null
+
+            /**
+             * 对该输入项的一个描述
+             */
+            var name: String? = null
+        }
     }
 
     class Category {

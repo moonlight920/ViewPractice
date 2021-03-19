@@ -1,9 +1,10 @@
 package cn.yfengtech.server
 
 import android.content.Context
-import cn.yfengtech.server.impl.BaseApiHttpHandler
 import cn.yfengtech.server.impl.IndexHttpHandler
 import cn.yfengtech.server.impl.MediaFileHttpHandler
+import cn.yfengtech.server.impl.PluginsHttpHandler
+import cn.yfengtech.server.plugin.Plugin
 import java.io.File
 import java.net.Inet4Address
 import java.net.InetAddress
@@ -13,21 +14,29 @@ import java.util.*
 
 class SimpleServer @JvmOverloads constructor(
     private val applicationContext: Context,
-    apiHttpHandler: BaseApiHttpHandler,
     port: Int = 9000
 ) : NanoHTTPD(port) {
+
+    private val mPluginHttpHandler = PluginsHttpHandler()
 
     private val handlerList = mutableListOf(
         // 首页
         IndexHttpHandler(),
         // 其他媒体文件
         MediaFileHttpHandler(),
-        // 上层实现的配置和功能
-        apiHttpHandler
+        mPluginHttpHandler
     )
 
     init {
         Util.assetsToCache(applicationContext)
+    }
+
+    fun setWebTitle(title: String) {
+        mPluginHttpHandler.htmlTitle = title
+    }
+
+    fun loadPlugin(plugin: Plugin) {
+        mPluginHttpHandler.loadPlugin(plugin)
     }
 
     override fun serve(session: IHTTPSession): Response? {

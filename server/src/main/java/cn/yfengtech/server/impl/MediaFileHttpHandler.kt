@@ -17,9 +17,8 @@ internal class MediaFileHttpHandler : HttpHandler {
 
             response = if (type != null)
                 NanoHTTPD.newFixedLengthResponse(
-                    NanoHTTPD.Response.Status.OK,
-                    type,
-                    file.readText()
+                    NanoHTTPD.Response.Status.OK, type,
+                    file.inputStream(), file.readBytes().size.toLong()
                 )
             else
                 NanoHTTPD.newFixedLengthResponse(file.readText())
