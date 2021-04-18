@@ -1,12 +1,16 @@
 package com.yf.viewpractice
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import cn.yfengtech.widgets.demo.*
+import cn.yfengtech.widgets.math.CoordinateFragment
 import com.yf.smarttemplate.SmartTemplate
+import com.yf.viewpractice.common.ImageSelectActivity
 import com.yf.viewpractice.server.WebServerFragment
 
 class MainActivity : AppCompatActivity() {
@@ -15,17 +19,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         SmartTemplate.apply(this) {
+            fragmentItem(CoordinateFragment::class.java) {
+                title = "坐标系"
+            }
+            activityItem(ImageSelectActivity::class.java) {
+                title = "选择本地图片"
+            }
             executionItem {
                 title = "打开应用市场"
                 execute {
                     val packageName = "com.huaxiaozhu.rider"
                     try {
-                        startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("market://details?id=$packageName")
-                            )
+                        val intent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=$packageName")
                         )
+                        startActivity(intent)
                     } catch (e: ActivityNotFoundException) {
                         startActivity(
                             Intent(
@@ -92,4 +101,6 @@ class MainActivity : AppCompatActivity() {
 //            .replace(android.R.id.content, Client())
 //            .commit()
     }
+
+
 }
